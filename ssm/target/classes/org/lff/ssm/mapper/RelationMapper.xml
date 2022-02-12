@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.lff.ssm.mapper.RelationMapper">
+    <insert id="addRelation" parameterType="Integer">
+        INSERT INTO relation (user_id, friend_id) VALUES(#{id1}, #{id2});
+    </insert>
+
+    <select id="getAllFriendIds" resultType="Integer">
+        SELECT friend_id FROM relation WHERE user_id=#{userId}
+        UNION
+        SELECT user_id FROM relation WHERE friend_id=#{userId};
+    </select>
+
+    <delete id="delRelationById" >
+        DELETE FROM relation WHERE (user_id=#{id1} AND friend_id=#{id2}) OR (user_id=#{id2} AND friend_id=#{id1});
+    </delete>
+
+</mapper>

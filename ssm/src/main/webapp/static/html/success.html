@@ -1,0 +1,43 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>聊天室</title>
+    <style>
+        [v-clock]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- view层 模板 -->
+<div id="vue" v-clock>
+    <h1>聊天界面</h1>
+    欢迎回来~   id: ${user.id}  用户名：${user.username} <br/>
+    我的好友：<br/>
+    <li v-for="friend in friends">
+        {{friend.username}}
+    </li>
+</div>
+
+<!-- 1.导入 Vue.js -->
+<script src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    var  vm = new Vue({
+        el: '#vue',
+        data: {
+            friends: [
+                {username: '123'},
+                {username: '234'}
+            ]
+        },
+        methods: {
+        },
+        computed: {
+
+        }
+    })
+</script>
+</body>
+</html>
